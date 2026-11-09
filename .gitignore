@@ -1,1 +1,8 @@
+node_modules/
+.expo/
+dist/
+.env
+.env.*
+!.env.example
 products.json
+*.log

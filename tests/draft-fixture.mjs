@@ -1,0 +1,6 @@
+export const analysis = {
+ task_assessment: {next_capture:'Show the assembled result and a stability check.',improvement_tips:[],task:'Furniture assembly',domain:'general',task_difficulty:'unknown',summary:'Tools alone cannot establish proficiency.',criteria:['procedure','tool_handling','finish_quality','outcome_check'].map(dimension=>({dimension,task_criterion:'Show the relevant assembly action or result.',rating:'not_observable',observation_indices:[],frame_indices:[],rationale:'A tool alone is insufficient.',limitation:'No assembly is visible.',next_evidence:'Record assembly and a stability check.'}))},
+ title:'Visible tools', observations:['A wrench is visible.'], limitations:['Skill cannot be verified.'],
+ process:{steps:[],skill_signals:[],assessment_gaps:['A continuous process and outcome test are needed.']},
+ proposal:{supported:true,name:'Furniture assembly assistance',category:'Furniture assembly',description:'Proposed furniture assembly service for seller review.',proposed_scope:['Assembly scope to be agreed'],exclusions_to_confirm:['Electrical work'],visible_tools:['Wrench'],evidence_links:[{claim:'A wrench is present',observation_index:0}],questions:['What did you assemble?'],next_capture:['Show the assembly process and finished result.']}
+};

@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import { analysis } from './draft-fixture.mjs';
+import { validateAnalysis, createServiceDraft } from '../api/service-draft.mjs';
+assert.equal(validateAnalysis(analysis),true);
+const invalid=structuredClone(analysis);invalid.proposal.evidence_links[0].observation_index=9;assert.equal(validateAnalysis(invalid),false);
+const blank=structuredClone(analysis);Object.assign(blank.proposal,{supported:false,name:null,category:null,description:null,proposed_scope:[],evidence_links:[]});assert.equal(validateAnalysis(blank),true);
+const input={image:'data:image/jpeg;base64,/9j/',capture_source:'app_camera',work_statement:'I assembled this.',performed_work:true};
+const d=createServiceDraft(analysis,input,'test');
+assert.equal(d.provider.authorship_claim,'seller_claimed');assert.equal(d.evidence.authorship_verified,false);assert.equal(d.evidence.authenticity,'not_verified');assert.equal(d.evidence.sha256.length,64);assert.equal(d.assessment.skill_level,null);assert.ok(d.assessment.dimensions.every(x=>x.score===null));assert.equal(d.valuation.amount,null);assert.equal(d.offer.amount,null);assert.equal(d.market.status,'not_open');assert.equal(d.publication.discoverable,false);
+assert.equal(createServiceDraft(blank,input,'test').status,'needs_work_context');
+console.log('PASS: evidence references, unsupported scene, unverified authorship, no fabricated skill/price, private draft.');
